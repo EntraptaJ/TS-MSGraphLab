@@ -1,25 +1,33 @@
 // src/Modules/HelloWorld/HelloWorldResolver.ts
-import { FieldResolver, Query, Resolver, Root } from 'type-graphql';
-import { loadConfig } from '../../Library/Config';
-import { getTeamChannels, request } from '../../Library/MSGraph';
-import { Channel } from '../Channel/Channel';
+import { GraphRequest } from '@microsoft/microsoft-graph-client';
+import {
+  Extensions,
+  FieldResolver,
+  ObjectType,
+  Query,
+  Resolver,
+  Root,
+  UseMiddleware,
+} from 'type-graphql';
+import {
+  client,
+  getTeamChannels,
+  MSGraphMiddleware,
+} from '../../Library/MSGraph';
+import { ValueResponse } from '../../Library/Response';
+import { Channel } from '../Channels/Channel';
 import { Team } from './Team';
 
-const config = await loadConfig();
+@ObjectType()
+class TeamsResponse extends ValueResponse(Team) {}
 
 @Resolver(() => Team)
 export class TeamResovler {
+  @UseMiddleware([MSGraphMiddleware])
+  @Extensions({ apiPath: '/me/joinedTeams' })
   @Query(() => [Team])
-  public async teams(): Promise<Team[]> {
-    const teams = [];
-
-    const teamsResponse = await request<{ value: Team[] }>('me/joinedTeams', {
-      method: 'GET',
-    });
-
-    console.log(teamsResponse);
-
-    return teamsResponse.value;
+  public myTeams(): GraphRequest {
+    return client.api('/me/joinedTeams');
   }
 
   @FieldResolver(() => [Channel])

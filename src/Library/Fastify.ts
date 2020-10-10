@@ -7,7 +7,7 @@ import { loadConfig } from './Config';
 export const webServer = fastify();
 
 const scope =
-  'offline_access user.read ChannelMessage.Send Channel.ReadBasic.All Team.ReadBasic.All';
+  'offline_access user.read ChannelMessage.Send Channel.ReadBasic.All Channel.Create Group.ReadWrite.All Team.ReadBasic.All User.Read.All User.ReadWrite.All Directory.Read.All Directory.ReadWrite.All Notifications.ReadWrite.CreatedByApp UserNotification.ReadWrite.CreatedByApp';
 
 const appConfig = await loadConfig()
 

@@ -1,23 +1,19 @@
 // src/Modules/Channel/Channel.ts
 import { Field, ID, ObjectType } from 'type-graphql';
+import { ChannelMembership } from './ChannelMembership';
 
 @ObjectType()
 export class Channel {
-  @Field(() => ID)
-  public readonly id: string;
-
-  @Field(() => Date, {
-    nullable: true,
-  })
-  public readonly createdDateTime?: Date;
-
-  @Field()
-  public displayName: string;
-
   @Field({
     nullable: true,
   })
   public description: string;
+
+  @Field()
+  public displayName: string;
+
+  @Field(() => ID)
+  public readonly id: string;
 
   @Field({
     nullable: true,
@@ -30,6 +26,11 @@ export class Channel {
   @Field()
   public webUrl: string;
 
-  @Field()
-  public membershipType: string;
+  @Field({
+    nullable: true,
+  })
+  public readonly createdDateTime?: string;
+
+  @Field(() => ChannelMembership)
+  public membershipType: ChannelMembership;
 }
