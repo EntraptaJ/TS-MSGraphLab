@@ -9,14 +9,24 @@
     "test": "echo TODO",
     "prepublishOnly": "npm run build",
     "build": "tsc -p ./tsconfig.build.json",
-    "start:debug": "node --loader @k-foss/ts-esnode --experimental-modules --harmony-optional-chaining --experimental-specifier-resolution=node --harmony-top-level-await ./",
+    "start:debug": "node --loader @k-foss/ts-esnode --experimental-modules --experimental-specifier-resolution=node --harmony-top-level-await ./",
     "dev": "nodemon",
     "prettier": "prettier --config .prettierrc --check \"src/**/*ts\"",
     "lint": "eslint ./src --ext .js,.ts"
   },
-  "dependencies": {},
+  "dependencies": {
+    "apollo-server-fastify": "^3.0.0-alpha.3",
+    "apollo-server-testing": "^2.18.2",
+    "fastify": "^3.5.1",
+    "got": "^11.7.0",
+    "graphql": "^15.3.0",
+    "js-yaml": "^3.14.0",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^1.0.0"
+  },
   "devDependencies": {
     "@k-foss/ts-esnode": "^1.7.0",
+    "@types/js-yaml": "^3.12.5",
     "@types/node": "^14.11.7",
     "@typescript-eslint/eslint-plugin": "^4.4.0",
     "@typescript-eslint/parser": "^4.4.0",

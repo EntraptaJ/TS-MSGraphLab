@@ -1,20 +1,21 @@
 // src/index.ts
-import { timeout } from './Utils/timeout';
+import 'reflect-metadata';
+import { createApolloServer } from './Library/Apollo';
+import { webServer } from './Library/Fastify';
+import { logger, LogMode } from './Library/Logger';
 
-/**
- * Logs a greeting for the name after a 1.5 second delay.
- * @param name User you are greeting
- */
-async function sayHello(name = 'John'): Promise<void> {
-  console.log('Waiting 1.5 seconds then saying Hi');
+logger.log(LogMode.WARN, 'Starting TS-MSGraphLab');
 
-  await timeout(1500);
+const apiServer = await createApolloServer();
 
-  console.log(`Hello ${name}!`);
-}
+webServer.register(
+  apiServer.createHandler({
+    disableHealthCheck: true,
+  }),
+);
 
-console.log(`Starting TS-Core`);
+await webServer.listen(8080, '0.0.0.0');
 
-await sayHello('K-FOSS');
+logger.log(LogMode.WARN, 'Started TS-MSGraphLab');
 
 export {};
