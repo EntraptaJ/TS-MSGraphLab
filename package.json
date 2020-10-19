@@ -31,7 +31,7 @@
     "@k-foss/ts-esnode": "^1.7.0",
     "@microsoft/microsoft-graph-types": "^1.23.0",
     "@types/js-yaml": "^3.12.5",
-    "@types/node": "^14.11.7",
+    "@types/node": "^14.11.10",
     "@typescript-eslint/eslint-plugin": "^4.4.0",
     "@typescript-eslint/parser": "^4.4.0",
     "eslint": "^7.11.0",
