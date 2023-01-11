@@ -18,7 +18,7 @@
     "@microsoft/microsoft-graph-client": "^2.1.0",
     "apollo-server-fastify": "^3.0.0-alpha.3",
     "apollo-server-testing": "^2.18.2",
-    "class-validator": "^0.12.2",
+    "class-validator": "^0.14.0",
     "fastify": "^3.6.0",
     "got": "^11.7.0",
     "graphql": "^15.3.0",
